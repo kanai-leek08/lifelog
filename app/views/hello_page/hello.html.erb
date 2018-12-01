@@ -5,10 +5,21 @@
     <header>
         <nav class="website-nav">
             <ul>
-                <li><a class="home-link" href="https://aws.amazon.com/">Home</a></li>
+                <li><a class="home-link" href="https://aws.amazon.com/">LifeLog</a></li>
             </ul>
         </nav>
     </header>
+    <div>
+        <% Log.all.each do |log| %>
+            <pre>
+                <%= log.body %>
+            </pre>
+        <% end %>
+    </div>
+    <%= form_tag('/hello_page/create') do %>
+        <input name="body">
+        <input type="submit">
+    <% end %>
 </div>
 <footer>
     <p class="footer-contents">Designed and developed with</p>

@@ -9,16 +9,20 @@ RSpec.describe HelloPageController, type: :controller do
 
   describe "GET #hello" do
     it "returns a success response" do
+      Log.create(body: "first log")
+      Log.create(body: "second log")
       get :hello, params: {}, session: valid_session
       expect(response).to be_success
+      expect(response.body).to include("first log")
+      expect(response.body).to include("second log")
       expect(response.content_type).to eq("text/html")
     end
   end
 
-  describe "POST #hello" do
+  describe "POST #create" do
     it "returns a success response" do
-      post :hello, params: {}, session: valid_session
-      expect(response).to be_success
+      post :create, params: {body: 'first log'}, session: valid_session
+      expect(Log.last[:body]).to eq 'first log'
       expect(response.content_type).to eq("text/html")
     end
   end
