@@ -11,12 +11,9 @@ phases:
 
   pre_build:
     commands:
-      # Set the SECRET_KEY_BASE environment variable for running tests
       - export SECRET_KEY_BASE=$(rake secret)
-
-      # Run the tests using RSpec.
+      - bin/rails db:migrate RAILS_ENV=test
       - rspec
-
 artifacts:
   type: zip
   files:
