@@ -12,7 +12,7 @@ RSpec.describe HelloPageController, type: :controller do
       Log.create(body: "first log")
       Log.create(body: "second log")
       get :hello, params: {}, session: valid_session
-      expect(response).to be_success
+      expect(response).to be_successful
       expect(response.body).to include("first log")
       expect(response.body).to include("second log")
       expect(response.content_type).to eq("text/html")
